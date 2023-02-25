@@ -1,0 +1,11 @@
+
+storageStrategy: local
+
+local: E:\Projekt\fileservice\.data
+aws:
+  access-key: test
+  secret-key: test
+  region: eu-west-1
+  bucket: my-test-bucket
+  multipart-min-part-size: 5242880 # 5MB
+  endpoint: http://localhost:4566/

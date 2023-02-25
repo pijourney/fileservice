@@ -1,0 +1,5 @@
+2023-02-25T00:33:42.858  WARN --- [-functhread5] hypercorn.error            : ASGI Framework Lifespan error, continuing without Lifespan support
+2023-02-25T00:33:42.858  WARN --- [-functhread5] hypercorn.error            : ASGI Framework Lifespan error, continuing without Lifespan support
+2023-02-25T00:33:42.863  INFO --- [-functhread5] hypercorn.error            : Running on https://0.0.0.0:4566 (CTRL + C to quit)
+2023-02-25T00:33:42.863  INFO --- [-functhread5] hypercorn.error            : Running on https://0.0.0.0:4566 (CTRL + C to quit)
+2023-02-25T00:33:43.087  INFO --- [  MainThread] localstack.utils.bootstrap : Execution of "start_runtime_components" took 1926.48ms

@@ -1,0 +1,23 @@
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - AWS_ACCESS_KEY_ID=test_1
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=eu-north-1
+    volumes:
+      - "E:/var/lib/localstack" # add ur volumne or use ${LOCALSTACK_VOLUME_DIR:-./volume}
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  create-bucket:
+    image: amazon/aws-cli
+    depends_on:
+      - localstack
+    command: >
+      sh -c "sleep 5 && /bin/bash ./create-bucket.sh"
