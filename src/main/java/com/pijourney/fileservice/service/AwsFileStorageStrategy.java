@@ -12,7 +12,6 @@ import software.amazon.awssdk.core.async.AsyncRequestBody;
 import software.amazon.awssdk.services.s3.S3AsyncClient;
 
 import java.time.Duration;
-
 public class AwsFileStorageStrategy implements FileStorageStrategy {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileService.class);
 

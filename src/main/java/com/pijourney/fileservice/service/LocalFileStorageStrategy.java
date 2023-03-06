@@ -3,11 +3,9 @@ package com.pijourney.fileservice.service;
 import jakarta.xml.bind.DatatypeConverter;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
-import org.springframework.util.MimeTypeUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.FileAlreadyExistsException;
@@ -15,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 
 public class LocalFileStorageStrategy implements FileStorageStrategy {
     private final Path basePath;
@@ -26,7 +25,8 @@ public class LocalFileStorageStrategy implements FileStorageStrategy {
 
     @Override
     public Mono<String> saveFile(String path, String name, long contentLength, String mimeType, Flux<DataBuffer> data) {
-        Path filePath = basePath.resolve(path+"-"+name+"."+mimeType);
+        Path filePath = basePath.resolve(path+"-"+name);
+
         // Create the directory if it does not exist
         Path parentDir = filePath.getParent();
         if (parentDir != null && !Files.exists(parentDir)) {

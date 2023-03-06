@@ -13,21 +13,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.multipart.FilePartEvent;
 import org.springframework.http.codec.multipart.PartEvent;
+import org.springframework.stereotype.Component;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
-import java.text.MessageFormat;
-
 import static org.springframework.web.reactive.function.BodyInserters.fromValue;
 
-public class Filehandler {
+@Component
+public class FileHandler {
     private final  ObjectMapper objectMapper;
     private static final Logger LOGGER = LoggerFactory.getLogger(FileService.class);
     private final FileService fileService;
 
-    public Filehandler(ObjectMapper objectMapper, FileService fileService){
+    public FileHandler(ObjectMapper objectMapper, FileService fileService){
         this.objectMapper = Validate.notNull(objectMapper, "ObjectMapper can't be null");
         this.fileService = Validate.notNull(fileService,"Fileservice can't be null");
     }

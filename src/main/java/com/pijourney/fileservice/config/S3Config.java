@@ -1,6 +1,9 @@
 package com.pijourney.fileservice.config;
 
+import com.pijourney.fileservice.service.AwsFileStorageStrategy;
+import com.pijourney.fileservice.service.FileStorageStrategy;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
@@ -13,6 +16,7 @@ import java.net.URI;
 import java.time.Duration;
 
 @Configuration
+@ConditionalOnProperty(name = "storageStrategy", havingValue = "aws")
 public class S3Config {
 
     @Bean(destroyMethod = "close")
@@ -32,4 +36,9 @@ public class S3Config {
                         .pathStyleAccessEnabled(true).build())
                 .credentialsProvider(() ->AwsBasicCredentials.create(accessKey, secretKey)).build();
     }
+    @Bean
+    public FileStorageStrategy awsFileStorageStrategy(S3AsyncClient s3AsyncClient) {
+        return new AwsFileStorageStrategy(s3AsyncClient);
+    }
+
 }

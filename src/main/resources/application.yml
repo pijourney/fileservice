@@ -1,7 +1,8 @@
 
 storageStrategy: local
 
-local: E:\Projekt\fileservice\.data
+local:
+  base-path: E:\Projekt\fileservice\.data
 aws:
   access-key: test
   secret-key: test
